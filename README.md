@@ -32,7 +32,7 @@ Integrated Development Environment: VSCode.
  
 ![Screenshot 2023-04-07 193300](https://user-images.githubusercontent.com/100932107/230634509-5ed422b1-d9f1-4a61-b700-37ca0ad6c190.png)
 
-# Login page look like this
+# Login page looks like this
 
 ![Screenshot 2023-04-07 200232](https://user-images.githubusercontent.com/100932107/230634901-5fc89370-d110-41fc-ad22-5e1eaf7ab854.png)
 
