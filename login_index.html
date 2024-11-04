@@ -1,124 +1,124 @@
 <!DOCTYPE html>
-
 <html lang="en">
- 
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-
-          content="width=device-width, 
-
-                         initial-scale=1.0">
-
-    <title>kalyan's GYM</title>
-
-    <link rel="stylesheet"
-
-          href="login_style.css">
-
+    <title>Kalyan's GYM</title>
+    <link rel="stylesheet" href="login_style.css">
 </head>
- 
-
 <body>
-
     <header>
-
         <h1 class="heading">Kalyan's GYM</h1>
-
     </header>
- 
-
-    <!-- container div -->
-
     <div class="container">
- 
-
-        <!-- upper button section to select
-
-             the login or signup form -->
-
         <div class="slider"></div>
-
         <div class="btn">
-
             <button class="login">Login</button>
-
             <button class="signup">Signup</button>
-
         </div>
- 
-
-        <!-- Form section that contains the
-
-             login and the signup form -->
-
         <div class="form-section">
- 
-
-            <!-- login form -->
-
             <div class="login-box">
-
-                <input type="email"
-
-                       class="email ele"
-
-                       placeholder="youremail@email.com">
-
-                <input type="password"
-
-                       class="password ele"
-
-                       placeholder="password">
-
-                <button class="clkbtn">Login</button>
-
+                <input type="email" class="email ele" placeholder="youremail@email.com" id="loginEmail">
+                <input type="password" class="password ele" placeholder="password" id="loginPassword">
+                <button class="clkbtn" id="loginBtn">Login</button>
             </div>
- 
-
-            <!-- signup form -->
-
             <div class="signup-box">
-
-                <input type="text"
-
-                       class="name ele"
-
-                       placeholder="Enter your name">
-
-                <input type="email"
-
-                       class="email ele"
-
-                       placeholder="youremail@email.com">
-
-                <input type="password"
-
-                       class="password ele"
-
-                       placeholder="password">
-
-                <input type="password"
-
-                       class="password ele"
-
-                       placeholder="Confirm password">
-
-                <button class="clkbtn">Signup</button>
-
+                <input type="text" class="name ele" placeholder="Enter your name" id="signupName">
+                <input type="email" class="email ele" placeholder="youremail@email.com" id="signupEmail">
+                <input type="password" class="password ele" placeholder="password" id="signupPassword">
+                <input type="password" class="password ele" placeholder="Confirm password" id="signupConfirmPassword">
+                <button class="clkbtn" id="signupBtn">Signup</button>
             </div>
-
         </div>
-
     </div>
 
     <script src="login_script.js"></script>
+    <script type="module">
+       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+       import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+       import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js';
+import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js';
+   
+// import { getAnalytics } from "firebase/analytics";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyCWtOM2RfaO_Odd6z4LkTidC7nAF3x_Mfo",
+  authDomain: "gym2-1e072.firebaseapp.com",
+  databaseURL: "https://gym2-1e072-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "gym2-1e072",
+  storageBucket: "gym2-1e072.firebasestorage.app",
+  messagingSenderId: "367556699426",
+  appId: "1:367556699426:web:f356f23c8e43ea896a717b",
+  measurementId: "G-NB34VKQ80J"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+        // const db = getDatabase(app);
+        // const db = getFirestore(app);
+// const auth = getAuth(app); 
+
+        // Handle Login
+        document.getElementById('loginBtn').addEventListener('click',(e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            async function loginUser(email, password) {
+//   try {
+    // Sign in the user
+    // const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    // const user = userCredential.user;
+
+    // After the user is logged in, fetch the user's data from Firestore
+    // const userDocRef = doc(db, 'users', user.uid); // Assuming 'users' is the collection
+    // const userDocSnap = await getDoc(userDocRef);
+
+    // if (userDocSnap.exists()) {
+      // User data exists in Firestore
+    //   console.log("User data:", userDocSnap.data());
+    //   return userDocSnap.data(); // Return user data
+//     } else {
+//       console.log("No such document!");
+//       return null;
+//     }
+//   } catch (error) {
+//     console.error("Error logging in: ", error);
+//   }
+// }
+ }   });
+
+        // Handle Signup
+        document.getElementById('signupBtn').addEventListener('click',(e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+console.log("Database connectivity!")
+const auth=getAuth()
+const db=getFirestore()
+createUserWithEmailAndPassword(auth,email,password).then((userCredential) =>{
+    const user=userCredential.user;
+    const userData={
+        name,email,password,
+    }
+})
+
+// set(ref(db,'customer/'+document.getElementById('signupName').value),{
+//     Customer: name,
+//     Email: email,
+//     Password: password,
+// })
+alert('sign up successfully')
+console.log("Database connectivity out!")
+document.getElementById('signupName').value=""
+document.getElementById('signupEmail').value=""
+document.getElementById('signupPassword').value=""
+document.getElementById('signupConfirmPassword').value=""
+        });
+       
+    </script>
 </body>
- 
-
 </html>
- 
